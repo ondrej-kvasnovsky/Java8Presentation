@@ -1,0 +1,14 @@
+class Accumulator {
+    private long total = 0;
+    public void add(long l) { total += l; }
+    public long getTotal() { return total; }
+}
+
+Accumulator a = new Accumulator();
+
+LongStream.rangeClosed(0, 10_000_000)
+  .parallel()
+  .forEach(a::add);
+
+long total = a.getTotal();
+System.out.println(total);

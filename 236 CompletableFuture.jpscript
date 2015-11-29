@@ -1,0 +1,7 @@
+CompletableFuture<String> task = 
+    CompletableFuture.supplyAsync(() -> {
+        return "100";
+});
+
+String s = task.get();
+System.out.println(s);

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { margin: 100px; font-family: "Gill Sans"; background-color: #393939; color: white; font-size: 250%; }
+h1   { text-align: center; vertical-align: middle; }
+small { font-size: 50%; }
+a:link { color: white; }
+a:visited { color: white; }
+a:hover { color: white; }
+a:active { color: white; }
+ul { list-style-type: circle; }
+</style>
+</head>
+<body>
+
+<h1>Lambdas Under the Hood</h1>
+
+<ul>
+  <li>
+    Why are anonymous inner classes unsatisfactory?
+  </li> 
+ <ul>
+  <li>
+     New class file for each anonymous inner class
+  </li>
+  <li>
+     Class file name looks like this <i>ClassName$1</i>
+  </li>
+ </ul>
+</ul>
+
+<ul>
+  <li>
+    Why too many class files is a problem?
+  </li> 
+ <ul>
+  <li>
+     Poor startup performance due I/O and decompressing the JAR
+  </li>
+  <li>
+     Startup performance of the application
+  </li>
+ </ul>
+</ul>
+
+<small>
+    * <a href="http://www.infoq.com/articles/Java-8-Lambdas-A-Peek-Under-the-Hood">
+      Lambdas Under the Hood
+    </a>
+</small>
+
+</body>
+</html>

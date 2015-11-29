@@ -1,0 +1,26 @@
+class Human {
+
+    private String name;
+    private Integer age;
+
+    public Human(String name, Integer age) { this.name = name; this.age = age; }
+
+    public String toString() { return name + " " + age; }
+
+    public String getName() { return name; }
+
+    public Integer getAge() { return age; }
+}
+
+List<Human> humans = Arrays.asList (
+    new Human("Jack", 12), 
+    new Human("Adam", 20),
+    new Human("Adam", 15), 
+    new Human("Zack", 4)
+);
+
+humans.sort((Human h1, Human h2) -> h1.getName().compareTo(h2.getName()));
+System.out.println(humans);
+
+humans.sort((Human h1, Human h2) -> h1.getAge().compareTo(h2.getAge()));
+System.out.println(humans);

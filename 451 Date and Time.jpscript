@@ -1,0 +1,5 @@
+LocalDate date = LocalDate.now();
+
+LocalDate nextSunday = date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+
+System.out.println(nextSunday);

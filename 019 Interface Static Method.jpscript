@@ -1,0 +1,16 @@
+interface Utils {
+
+    static boolean isValid(String s) {
+        return s != null && !s.isEmpty();
+    }
+
+    default String getUserName(String login) {
+        if (isValid(login)) {
+            return "John the Administrator";
+        } 
+        return null;
+    }
+}
+
+String s = new Utils(){}.getUserName("admin");
+System.out.println(s);

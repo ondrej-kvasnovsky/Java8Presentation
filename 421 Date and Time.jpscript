@@ -1,0 +1,21 @@
+LocalDateTime dateTime = LocalDateTime.of(2015, Month.MARCH, 18, 13, 45, 20);
+
+System.out.println(dateTime);
+
+
+int year = dateTime.getYear();
+Month month = dateTime.getMonth();
+int day = dateTime.getDayOfMonth();
+
+System.out.println(year);
+System.out.println(month);
+System.out.println(day);
+
+
+int hour = dateTime.getHour();
+int minute = dateTime.getMinute();
+int second = dateTime.getSecond();
+
+System.out.println(hour);
+System.out.println(minute);
+System.out.println(second);

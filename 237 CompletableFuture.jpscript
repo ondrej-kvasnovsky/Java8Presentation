@@ -1,0 +1,70 @@
+class Page {
+
+    private static final String HTML_A_TAG_PATTERN = "(?i)<a([^>]+)>(.+?)</a>";
+    private static final String HTML_A_HREF_TAG_PATTERN = "\\s*(?i)href\\s*=\\s*(\"([^\"]*\")|'[^']*'|([^'\">\\s]+))";
+
+    private Pattern patternTag, patternLink;
+    private Matcher matcherTag, matcherLink;
+
+    private final String link;
+    private String text;
+    private List<String> result = new ArrayList<>();
+
+    public Page(String link) {
+        this.link = link;
+        patternTag = Pattern.compile(HTML_A_TAG_PATTERN);
+        patternLink = Pattern.compile(HTML_A_HREF_TAG_PATTERN);
+    }
+
+    void load() {
+        try {
+            URL url = new URL(link);
+            InputStream i = url.openStream();
+            Scanner scan = new Scanner(i);
+            StringBuilder totalText = new StringBuilder();
+            while (scan.hasNextLine()) {
+                totalText.append(scan.nextLine());
+            }
+            text = totalText.toString();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void extractLinks() {
+        matcherTag = patternTag.matcher(text);
+        while (matcherTag.find()) {
+            String href = matcherTag.group(1);
+            matcherLink = patternLink.matcher(href);
+            while (matcherLink.find()) {
+                String link = matcherLink.group(1);
+                result.add(link);
+            }
+        }
+    }
+
+    public List<String> getResult() {
+        return result;
+    }
+}
+
+Function<Page, CompletableFuture<Page>> f = page -> CompletableFuture.supplyAsync(() -> {
+    page.load();
+    return page;
+}).thenCompose(p -> CompletableFuture.supplyAsync(() -> {
+    p.extractLinks();
+    return page;
+}));
+
+Stream<Page> stream = Stream.of(
+        new Page("http://ondrej-kvasnovsky.blogspot.com")
+);
+List<Page> result = stream.parallel()
+        .map(f)
+        .map(CompletableFuture::join)
+        .collect(Collectors.toList());
+
+result.stream()
+        .map(Page::getResult)
+        .flatMap(List::stream)
+        .forEach(System.out::println);

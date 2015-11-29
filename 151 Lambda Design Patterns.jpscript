@@ -1,0 +1,34 @@
+// 1.7
+interface ValidationStrategy {
+    boolean execute(String x);
+}
+
+class IsAllLowerCase implements ValidationStrategy {
+    public boolean execute(String s){
+        return s.matches("[a-z]+");
+    }
+}
+
+class IsNumeric implements ValidationStrategy {
+    public boolean execute(String s){
+        return s.matches("\\d+");
+    }
+}
+
+class Validator {
+    private ValidationStrategy strategy;
+    public Validator(ValidationStrategy strategy) {
+        this.strategy = strategy;
+    }
+    public boolean validate(String x) {
+        return strategy.execute(x); 
+    }
+}
+
+Validator lowerCaseValidator = new Validator(new IsAllLowerCase());
+System.out.println(lowerCaseValidator.validate("HI"));
+System.out.println(lowerCaseValidator.validate("hi"));
+
+Validator isNumericValidator = new Validator(new IsNumeric());
+System.out.println(isNumericValidator.validate("Hi"));
+System.out.println(isNumericValidator.validate("1"));

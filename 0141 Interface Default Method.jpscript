@@ -1,0 +1,20 @@
+interface A1 {
+    default void x() {
+        System.out.println("A1");
+    }
+}
+
+interface A2 {
+    default void x() {
+        System.out.println("A2");
+    }
+}
+
+class Impl implements A1, A2 {
+}
+
+A1 a1 = new Impl();
+a1.x();
+
+A2 a2 = new Impl();
+a2.x();

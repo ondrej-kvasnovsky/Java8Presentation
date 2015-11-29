@@ -1,0 +1,10 @@
+List<String> names = Arrays.asList("A", "B", "C", "D");
+
+List<String> result = names.stream()
+                            .filter(s -> s.length() == 1)
+                            .filter(s -> s.contains("A"))
+                            .sorted((p1, p2) -> p1.compareTo(p2))
+                            .map(s -> s.toLowerCase())
+                            .collect(Collectors.toList());
+
+System.out.println(result);

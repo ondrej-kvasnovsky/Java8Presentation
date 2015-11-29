@@ -1,0 +1,21 @@
+enum Level {
+    FINE
+}
+
+class Logger {
+
+    public boolean isLoggable() {
+        return true;
+    }
+
+    public void log(Level level, String text) {
+        if (level == Level.FINE) {
+            System.out.println(text);
+        }
+    }
+}
+
+
+Logger logger = new Logger();
+
+logger.log(Level.FINE, "This message is juuuust fine.");

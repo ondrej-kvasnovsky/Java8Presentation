@@ -1,0 +1,8 @@
+interface Processor {
+    static String process(String s) {
+        return s.toUpperCase();
+    }
+}
+
+String s = Processor.process("Hi there");
+System.out.println(s);

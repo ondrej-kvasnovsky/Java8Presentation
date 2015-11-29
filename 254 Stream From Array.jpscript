@@ -1,0 +1,4 @@
+String[] numbers = {"A", "B"};
+Stream<String> stream = Arrays.stream(numbers);
+
+stream.forEach(System.out::println);

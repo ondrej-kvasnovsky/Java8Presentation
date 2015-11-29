@@ -1,0 +1,16 @@
+int size = 10_000_000;
+List<Integer> values = new ArrayList<>(size);
+for (int i = 0; i < size; i++) {
+    values.add(i);
+}
+
+System.out.println(values.size());
+
+long start = System.nanoTime();    
+long count = values.parallelStream().count();
+long took = System.nanoTime() - start;
+
+System.out.println(count);
+
+double ms = (double) took / 1_000_000;
+System.out.println(ms);

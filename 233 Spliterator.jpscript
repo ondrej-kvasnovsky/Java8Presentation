@@ -1,0 +1,30 @@
+class Person {
+  private String firstname;
+  private String surname;
+  private String country;
+  public Person(String firstname, String surname, String country) {
+    this.firstname = firstname;
+    this.surname = surname;
+    this.country = country;
+  }
+}
+
+Collection<Person> people = new ArrayList<>();
+people.add(new Person("Jane", "Doe", "England"));
+people.add(new Person("Joe", "Doe", "England"));
+people.add(new Person("John", "Doe", "Scotland"));
+people.add(new Person("Julie", "Doe", "USA"));
+people.add(new Person("Jerry", "Doe", "France"));
+people.add(new Person("Jim", "Doe", "USA"));
+
+Spliterator<Person> peopleSpliterator = people.spliterator();
+System.out.println(" " + peopleSpliterator.estimateSize());
+
+Spliterator<Person> newPartition = peopleSpliterator.trySplit();
+System.out.println(" " + newPartition.estimateSize());
+System.out.println(" " + peopleSpliterator.estimateSize());
+
+Spliterator<Person> newPartition2 = newPartition.trySplit();
+System.out.println(" " + peopleSpliterator.estimateSize());
+System.out.println(" " + newPartition.estimateSize());
+System.out.println(" " + newPartition2.estimateSize());

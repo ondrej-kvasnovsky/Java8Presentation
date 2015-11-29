@@ -1,0 +1,10 @@
+LocalDate date = LocalDate.parse("2015-01-02");
+
+int year = date.getYear();
+Month month = date.getMonth();
+month = month.plus(2);
+int day = date.getDayOfMonth();
+
+System.out.println(year);
+System.out.println(month);
+System.out.println(day);

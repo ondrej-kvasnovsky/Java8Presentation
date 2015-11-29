@@ -1,0 +1,7 @@
+Stream<Double> stream = Stream.generate(Math::random);
+// Stream.generate(Math::random).limit(10).forEach(System.out::println);
+// stream.count();
+Optional<Double> first = stream.findFirst();
+Double value = first.get();
+
+System.out.println(value);

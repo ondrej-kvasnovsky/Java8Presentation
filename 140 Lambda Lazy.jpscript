@@ -1,0 +1,16 @@
+class Logger {
+
+    public boolean isLoggable() {
+        return true;
+    }
+
+    public void fine(String text) {
+        System.out.println(text);
+    }
+}
+
+Logger logger = new Logger();
+
+if (logger.isLoggable()) {
+    logger.fine("This message is juuuust fine.");
+}

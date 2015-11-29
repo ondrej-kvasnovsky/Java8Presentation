@@ -1,0 +1,7 @@
+ZoneOffset czechOffset = ZoneOffset.of("-09:00");
+
+LocalDateTime dateTime = LocalDateTime.now();
+System.out.println(dateTime);
+
+OffsetDateTime czechDateTime = OffsetDateTime.of(dateTime, czechOffset);
+System.out.println(czechDateTime);

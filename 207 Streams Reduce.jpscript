@@ -1,0 +1,9 @@
+List<BigDecimal> bigDecimals = Arrays.asList(
+    new BigDecimal(1),
+    new BigDecimal(2)
+);
+
+Stream<BigDecimal> stream = bigDecimals.stream();
+BigDecimal sum = stream.reduce(BigDecimal.ZERO, BigDecimal::add);
+
+System.out.println(sum);

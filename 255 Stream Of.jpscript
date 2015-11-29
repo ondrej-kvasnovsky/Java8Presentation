@@ -1,0 +1,3 @@
+Stream<String> stream = Stream.of("A", "B");
+
+stream.forEach(System.out::println);

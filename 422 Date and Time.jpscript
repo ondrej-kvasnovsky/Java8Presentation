@@ -1,0 +1,7 @@
+LocalDateTime dateTime = LocalDateTime.of(2015, Month.MARCH, 18, 13, 45, 20);
+
+LocalDate date = dateTime.toLocalDate();
+System.out.println(date);
+
+LocalTime time = dateTime.toLocalTime();
+System.out.println(time);

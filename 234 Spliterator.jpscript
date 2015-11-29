@@ -1,0 +1,81 @@
+class Person {
+
+    private String firstname;
+    private String surname;
+    private String country;
+
+    public Person(String firstname, String surname, String country) {
+        this.firstname = firstname;
+        this.surname = surname;
+        this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return firstname + " " + surname + " " + country;
+    }
+}
+
+List<Person> people = new ArrayList();
+people.add(new Person("Jane", "Doe", "England"));
+people.add(new Person("Joe", "Doe", "England"));
+people.add(new Person("John", "Doe", "Scotland"));
+people.add(new Person("Julie", "Doe", "USA"));
+people.add(new Person("Jerry", "Doe", "France"));
+people.add(new Person("Jim", "Doe", "USA"));
+
+class GroupingSpliterator implements Spliterator<Person> {
+
+    private final List<Person> people;
+    private final boolean grouped;
+    private ArrayDeque<List<Person>> queue;
+
+    public GroupingSpliterator(List<Person> people, boolean grouped) {
+        this.people = people;
+        this.grouped = grouped;
+    }
+
+    @Override
+    public boolean tryAdvance(Consumer<? super Person> action) {
+        people.forEach(action::accept);
+        return false;
+    }
+
+    @Override
+    public Spliterator<Person> trySplit() {
+        if (queue != null) {
+            List<Person> people = queue.pollLast();
+            if (people != null) {
+                return new GroupingSpliterator(people, true);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public long estimateSize() {
+        if (queue == null && !grouped) {
+            queue = new ArrayDeque();
+            Stream<String> countries = people.stream()
+                .map(p -> p.country)
+                .distinct();
+            countries.forEach(c -> {
+                List<Person> grouped = people.stream()
+                                .filter(p -> p.country.equals(c))
+                                .collect(Collectors.toList());
+                queue.add(grouped);
+            });
+        }
+        List<Person> p = queue.peekLast();
+        return p.size();
+    }
+
+    @Override
+    public int characteristics() {
+        return SIZED | SUBSIZED | NONNULL | IMMUTABLE | CONCURRENT;
+    }
+}
+
+GroupingSpliterator spliterator = new GroupingSpliterator(people, false);
+Stream<Person> stream = StreamSupport.stream(spliterator, true);
+stream.forEach(System.out::println);

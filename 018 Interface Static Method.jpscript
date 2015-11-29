@@ -1,0 +1,25 @@
+interface Utils {
+
+    static boolean isEmpty(String s) {
+        return s == null || s.isEmpty();
+    }
+
+    static boolean isNotEmpty(String s) {
+        return s != null && !s.isEmpty();
+    }
+
+    static String getUserName() {
+        return "Admin";
+    }
+}
+
+System.out.println(Utils.isEmpty(null));
+System.out.println(Utils.isEmpty(""));
+System.out.println(Utils.isEmpty("hi there"));
+
+System.out.println(Utils.isNotEmpty(null));
+System.out.println(Utils.isNotEmpty(""));
+System.out.println(Utils.isNotEmpty("hi there"));
+
+String s = Utils.getUserName();
+System.out.println(s);

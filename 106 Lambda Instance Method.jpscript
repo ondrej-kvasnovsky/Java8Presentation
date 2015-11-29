@@ -1,0 +1,18 @@
+// 1.7 code
+class Processor {
+    void process(List<String> list, Consumer<String> c) {
+        for (String l : list) {
+            c.accept(l);
+        }
+    }
+}
+
+List<String> names = Arrays.asList ( 
+    "David", "Richard", "Samuel", "Rose", "John"
+);
+ 
+new Processor().process(names, new Consumer<String>() {
+    public void accept(String s) {
+        System.out.println(s);
+    }
+});

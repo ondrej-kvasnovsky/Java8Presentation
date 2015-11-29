@@ -1,0 +1,21 @@
+interface ValidationStrategy {
+    boolean execute(String x);
+}
+
+class Validator {
+    private ValidationStrategy strategy;
+    public Validator(ValidationStrategy strategy) {
+        this.strategy = strategy;
+    }
+    public boolean validate(String x) {
+        return strategy.execute(x); 
+    }
+}
+
+Validator lowerCaseValidator = new Validator(s -> s.matches("[a-z]+"));
+System.out.println(lowerCaseValidator.validate("HI"));
+System.out.println(lowerCaseValidator.validate("hi"));
+
+Validator isNumericValidator = new Validator(s -> s.matches("\\d+"));
+System.out.println(isNumericValidator.validate("Hi"));
+System.out.println(isNumericValidator.validate("1"));

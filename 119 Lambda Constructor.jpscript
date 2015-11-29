@@ -1,0 +1,33 @@
+class User {
+    private Integer age;
+    public User(Integer age) { this.age = age; }
+    public String toString() { return "User: " + Integer.toString(age); }
+}
+
+class Data {
+    private Integer size;
+    public Data(Integer size) { this.size = size; }
+    public String toString() { return "Data: " + Integer.toString(size); }
+}
+
+class Factory<T> {
+
+    public List<T> create(List<Integer> list, Function<Integer, T> f) {
+        List<T> result = new ArrayList();
+        for (Integer x : list) {
+            T user = f.apply(x);
+            result.add(user);
+        }
+        return result;
+    }
+}
+
+List<Integer> numbers = Arrays.asList(4, 9, 16, 25, 36);
+Factory<User> userFactory = new Factory<>();
+
+List<User> users = userFactory.create(numbers, User::new);
+System.out.println(users);
+
+Factory<Data> dataFactory = new Factory<>();
+List<Data> data = dataFactory.create(numbers, Data::new);
+System.out.println(data);

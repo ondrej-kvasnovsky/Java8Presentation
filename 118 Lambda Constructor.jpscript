@@ -1,0 +1,25 @@
+class User {
+    private Integer age;
+    public User(Integer age) { this.age = age; }
+    public String toString() { return "User: " + Integer.toString(age); }
+}
+
+class UserFactory {
+
+    public List<User> create(List<Integer> list, Function<Integer, User> f) {
+        List<User> result = new ArrayList<>();
+        for (Integer x : list) {
+            User user = f.apply(x);
+            result.add(user);
+        }
+        return result;
+    }
+}
+
+List<Integer> numbers = Arrays.asList(4, 9, 16, 25, 36);
+
+UserFactory factory = new UserFactory();
+ 
+List<User> users = factory.create(numbers, User::new);
+
+System.out.println(users);

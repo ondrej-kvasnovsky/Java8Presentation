@@ -1,0 +1,24 @@
+Properties props = new Properties();
+props.setProperty("a", "5");
+props.setProperty("b", "true");
+props.setProperty("c", "-3");
+
+class Reader {
+
+    public int readInt(Properties props, String name) {
+        String value = props.getProperty(name);
+        if (value != null) {
+            try {
+                int i = Integer.parseInt(value);
+                if (i > 0) {
+                    return i;
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+        return 0;
+    }
+}
+
+int a = new Reader().readInt(props, "a");
+System.out.println(a);

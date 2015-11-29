@@ -1,0 +1,11 @@
+LocalDate date = LocalDate.of(2015, 1, 2);
+
+System.out.println(date);
+
+int year = date.getYear();
+Month month = date.getMonth();
+int day = date.getDayOfMonth();
+
+System.out.println(year);
+System.out.println(month);
+System.out.println(day);

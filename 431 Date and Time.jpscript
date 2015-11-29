@@ -1,0 +1,3 @@
+Instant instant = Instant.ofEpochSecond(3);
+
+System.out.println(instant);

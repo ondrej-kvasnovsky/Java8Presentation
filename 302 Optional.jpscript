@@ -1,0 +1,36 @@
+class Insurance {
+    private String name;
+    public String getName() {
+        return name;
+    }
+}
+
+class Car {
+    private Insurance insurance;
+    public Insurance getInsurance() {
+        return insurance;
+    }
+}
+
+class Person {
+    private Car car;
+    public Car getCar() {
+        return car;
+    }
+}
+
+class Service {
+
+    public String getCarInsuranceName(Person person) {
+        if (person != null) {
+            Car car = person.getCar();
+            if (car != null) {
+                Insurance insurance = car.getInsurance();
+                if (insurance != null) {
+                    return insurance.getName();
+                }
+            }
+        }
+        return null;
+    }
+}

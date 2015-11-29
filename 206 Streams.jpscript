@@ -1,0 +1,7 @@
+List<String> names = Arrays.asList("A", "B", "C", "D");
+
+Stream<String> stream = names.stream();
+
+System.out.println(stream.count());
+
+System.out.println(stream.map((s) -> s.toLowerCase()));

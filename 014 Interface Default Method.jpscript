@@ -1,0 +1,17 @@
+interface Process {
+    List list(String data);
+
+    default Stream stream(String data) {
+        return list(data).stream();
+    }
+}
+
+Process process = new Process() {
+    public List list(String data) {
+        return Arrays.asList(data.split(" "));
+    }
+};
+
+Stream processed = process.stream("a b c");
+
+processed.forEach(System.out::println);

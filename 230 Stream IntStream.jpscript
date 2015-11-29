@@ -1,0 +1,11 @@
+int[] values1 = new int[100];
+for (int i = 1; i <= 99; i++) {
+    values1[i] = i;
+}
+
+System.out.println(Arrays.toString(values1));
+
+int[] values2 = new int[100];
+IntStream.rangeClosed(0, 99).forEach(i -> values2[i] = i);
+
+System.out.println(Arrays.toString(values2));

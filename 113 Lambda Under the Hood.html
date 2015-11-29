@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { margin: 100px; font-family: "Gill Sans"; background-color: #393939; color: white; font-size: 250%; }
+h1   { text-align: center; vertical-align: middle; }
+small { font-size: 50%; }
+a:link { color: white; }
+a:visited { color: white; }
+a:hover { color: white; }
+a:active { color: white; }
+ul { list-style-type: circle; }
+</style>
+</head>
+<body>
+
+<h1>Lambdas Under the Hood</h1>
+
+<ul>
+  <li>
+    How is lambda ran?
+  </li> 
+ <ul>
+  <li>
+     By using new invokedynamic bytecode instruction introduced in Java7 
+  </li>
+<ul>
+  <li>
+      The translation of a lambda expression to bytecode is performed in two steps:    
+  </li> 
+ <ol>
+  <li>
+Generate an <a href="http://www.javaworld.com/article/2860079/scripting-jvm-languages/invokedynamic-101.html">invokedynamic call site</a> (called lambda factory), which when invoked returns an instance of the Functional Interface to which the lambda is being converted
+  </li>
+  <li>
+Convert the body of the lambda expression into a method that will be invoked through the invokedynamic instruction.
+  </li>
+<ul>
+  <li>
+    non-capturing
+  </li>
+  <li>
+    capturing
+  </li> 
+ </ul>
+ </ol>
+</ul>
+
+</body>
+</html>

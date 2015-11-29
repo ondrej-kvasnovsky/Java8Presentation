@@ -1,0 +1,25 @@
+Properties props = new Properties();
+props.setProperty("a", "5");
+props.setProperty("b", "true");
+props.setProperty("c", "-3");
+
+class Reader {
+
+    public int readInt(Properties props, String name) {
+        return Optional.ofNullable(props.getProperty(name))
+                       .flatMap(this::stringToInt)
+                       .filter(i -> i > 0)
+                       .orElse(0);
+    }
+
+    public Optional<Integer> stringToInt(String s) {
+        try {
+            return Optional.ofNullable(Integer.valueOf(s));
+        } catch (NumberFormatException e) {
+            return Optional.empty();
+        }
+    }
+}
+
+int a = new Reader().readInt(props, "b");
+System.out.println(a);

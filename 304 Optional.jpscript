@@ -1,0 +1,28 @@
+class Insurance {
+    private String name;
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
+    }
+}
+
+class Car {
+    private Insurance insurance;
+    public Optional<Insurance> getInsurance() {
+        return Optional.ofNullable(insurance);
+    }
+}
+
+class Person {
+    private Car car;
+    public Optional<Car> getCar() {
+        return Optional.ofNullable(car);
+    }
+}
+
+Optional<Person> person = Optional.empty();
+
+String name = person.flatMap(Person::getCar)
+                .flatMap(Car::getInsurance)
+                .flatMap(Insurance::getName)
+                .orElse("Unknown");
+System.out.println(name);

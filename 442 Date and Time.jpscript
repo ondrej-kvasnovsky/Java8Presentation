@@ -1,0 +1,2 @@
+Period tenDays = Period.between(LocalDate.of(2014, 3, 8), LocalDate.of(2014, 3, 18));
+System.out.println(tenDays);

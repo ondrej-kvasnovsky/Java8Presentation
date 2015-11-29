@@ -1,0 +1,9 @@
+class Processor {
+    Float transform(String value, Function<String, Float> f) {
+        return f.apply(value);
+    }
+}
+
+Float s = new Processor().transform("100", Float::parseFloat);
+
+System.out.println(s);

@@ -1,0 +1,33 @@
+class Transaction {
+    private int id;
+    private String customer;
+    private double invoicePrice;
+    Transaction(int id, String customer, double invoicePrice) {
+        this.id = id;
+        this.customer = customer;
+        this.invoicePrice = invoicePrice;
+    }
+    public String getCustomer() { return customer; }
+    public Double getInvoicePrice() { return invoicePrice; }
+}
+
+SecureRandom random = new SecureRandom();
+int size = 1_000_000;
+List<Transaction> values = new ArrayList<>(size);
+for (int i = 0; i < size; i++) {
+    values.add(new Transaction(i, new BigInteger(130, random).toString(32), Math.random()));
+}
+
+long start = System.nanoTime();
+
+double sum = values.stream()
+    .filter(t -> t.getCustomer().contains("a"))
+    .mapToDouble(Transaction::getInvoicePrice)
+    .sum();
+
+long took = System.nanoTime() - start;
+
+System.out.println("Sum: " + sum);
+
+double ms = (double) took / 1_000_000;
+System.out.println("Took: " + ms);

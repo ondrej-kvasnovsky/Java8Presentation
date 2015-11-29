@@ -1,0 +1,29 @@
+class Human {
+
+    private String name;
+    private Integer age;
+
+    public Human(String name, Integer age) { this.name = name; this.age = age; }
+
+    public String toString() { return name + ": " + age; }
+
+    public String getName() { return name; }
+
+    public Integer getAge() { return age; }
+}
+
+List<Human> humans = Arrays.asList (
+    new Human("Jack", 12), 
+    new Human("Adam 1", 20),
+    new Human("Adam 2", 15), 
+    new Human("Zack", 4)
+);
+System.out.println(humans);
+
+List<String> result = humans.stream()
+                            .filter(h -> h.getAge() >= 15)
+                            .sorted(Comparator.comparing(Human::getAge))
+                            .map(Human::getName)
+                            .collect(Collectors.toList());
+
+System.out.println(result);

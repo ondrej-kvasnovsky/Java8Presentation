@@ -1,0 +1,7 @@
+java.util.Date date = new java.util.Date(0, 2, 18);
+
+System.out.println(date);
+
+date.setYear(114);
+date.setMonth(0);
+System.out.println(date);
