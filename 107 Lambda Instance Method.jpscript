@@ -9,5 +9,6 @@ class Processor {
 List<String> names = Arrays.asList ( 
     "David", "Richard", "Samuel", "Rose", "John"
 );
- 
-new Processor().process(names, System.out::println);
+
+Consumer<String> f = System.out::println;
+new Processor().process(names, f);

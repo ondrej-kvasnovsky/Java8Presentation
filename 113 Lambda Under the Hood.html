@@ -19,31 +19,23 @@ ul { list-style-type: circle; }
 <ul>
   <li>
     How is lambda ran?
+<pre>Consumer<String> f = System.out::println;</pre>
+  </li> 
+
+<ul>
+  <li>
+      The translation of a lambda expression to bytecode is performed in runtime: 
   </li> 
  <ul>
   <li>
-     By using new invokedynamic bytecode instruction introduced in Java7 
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/LambdaMetafactory.html">LambdaMetafactory</a> 
+creates 
+
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/CallSite.html">CallSite</a> using 
+<a href="http://www.javaworld.com/article/2860079/scripting-jvm-languages/invokedynamic-101.html">invokedynamic</a> 
+ which holds 
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/invoke/MethodHandle.html">MethodHandle</a>, which when invoked returns an instance of the Functional Interface to which the lambda is being converted. It can have different return type and parameters, that is why invokedynamic.
   </li>
-<ul>
-  <li>
-      The translation of a lambda expression to bytecode is performed in two steps:    
-  </li> 
- <ol>
-  <li>
-Generate an <a href="http://www.javaworld.com/article/2860079/scripting-jvm-languages/invokedynamic-101.html">invokedynamic call site</a> (called lambda factory), which when invoked returns an instance of the Functional Interface to which the lambda is being converted
-  </li>
-  <li>
-Convert the body of the lambda expression into a method that will be invoked through the invokedynamic instruction.
-  </li>
-<ul>
-  <li>
-    non-capturing
-  </li>
-  <li>
-    capturing
-  </li> 
- </ul>
- </ol>
 </ul>
 
 </body>

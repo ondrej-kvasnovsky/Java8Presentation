@@ -1,14 +1,14 @@
 // 1.7 code
 interface Process {
-    List list(String data);
+    List<String> split(String data);
 }
 
 Process process = new Process() {
-    public List list(String data) {
+    public List<String> split(String data) {
         return Arrays.asList(data.split(" "));
     }
 };
 
-List processed = process.list("a b c");
+List<String> processed = process.split("a b c");
 
 System.out.println(processed);

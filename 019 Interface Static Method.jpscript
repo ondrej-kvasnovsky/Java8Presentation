@@ -1,4 +1,4 @@
-interface Utils {
+interface UserService {
 
     static boolean isValid(String s) {
         return s != null && !s.isEmpty();
@@ -12,5 +12,5 @@ interface Utils {
     }
 }
 
-String s = new Utils(){}.getUserName("admin");
+String s = new UserService(){}.getUserName("admin");
 System.out.println(s);
